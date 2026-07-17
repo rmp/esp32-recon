@@ -18,7 +18,7 @@
 all: build
 
 build:
-	pio run
+	pio run -e esp32
 
 upload:
 	pio run --target upload
