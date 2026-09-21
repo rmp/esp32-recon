@@ -13,18 +13,20 @@
 #   make uploadfs     Upload filesystem image
 #   make fuse         Build, flash firmware + filesystem
 
+ENVIRON=-e esp32
+
 .PHONY: all build upload monitor deploy test size erase clean buildfs uploadfs fuse
 
 all: build
 
 build:
-	pio run -e esp32
+	pio run $(ENVIRON)
 
 upload:
-	pio run --target upload
+	pio run $(ENVIRON) --target upload
 
 monitor:
-	pio device monitor
+	pio device monitor $(ENVIRON)
 
 deploy: upload monitor
 
@@ -32,18 +34,18 @@ test:
 	pio test -e native
 
 size:
-	pio run --target size
+	pio run $(ENVIRON) --target size
 
 erase:
-	pio run --target erase
+	pio run $(ENVIRON) --target erase
 
 clean:
-	pio run --target clean
+	pio run $(ENVIRON) --target clean
 
 buildfs:
-	pio run --target buildfs
+	pio run $(ENVIRON) --target buildfs
 
 uploadfs:
-	pio run --target uploadfs
+	pio run $(ENVIRON) --target uploadfs
 
 fuse: upload uploadfs monitor
