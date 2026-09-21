@@ -61,7 +61,7 @@ void bleInit() {
     if (bleActive) return;
     BLEDevice::init("");
     pScan = BLEDevice::getScan();
-    pScan->setAdvertisedDeviceCallbacks(&scanCB, false);
+    pScan->setAdvertisedDeviceCallbacks(&scanCB, true);
     pScan->setActiveScan(true);
     pScan->setInterval(100);
     pScan->setWindow(99);
